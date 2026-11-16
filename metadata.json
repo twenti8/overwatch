@@ -1,0 +1,6 @@
+{
+  "name": "OVERWATCH Patch & Update Tracker",
+  "description": "ระบบติดตามอัปเดตแพตช์เกม [OVERWATCH] แบบเรียลไทม์ พร้อมไทม์ไลน์ประวัติแพตช์และระบบซิงค์อัตโนมัติ",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
