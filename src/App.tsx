@@ -4,6 +4,7 @@ import { CounterRecommendationBox } from './components/CounterRecommendationBox'
 import { HeroCard } from './components/HeroCard';
 import { MetaSettingsModal } from './components/MetaSettingsModal';
 import { MetaToast, type MetaToastData } from './components/MetaToast';
+import { OverwatchEmblem } from './components/OverwatchEmblem';
 import { HERO_ROSTER } from './data/heroesAndMeta';
 import type {
   CounterMatchup,
@@ -418,6 +419,7 @@ export default function App() {
       <main className="mx-auto max-w-[1160px] rounded-3xl border border-[#E2E8F0] bg-white px-4 py-7 sm:px-8 sm:py-10 shadow-[0_4px_24px_rgba(15,23,42,0.04)]">
         {/* Centered Header Section */}
         <header className="flex flex-col items-center text-center">
+          <OverwatchEmblem className="mb-2.5 h-12 w-12" />
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1E293B]">
             OVERWATCH
           </h1>
