@@ -5,6 +5,7 @@ import { HeroCard } from './components/HeroCard';
 import { MetaSettingsModal } from './components/MetaSettingsModal';
 import { MetaToast, type MetaToastData } from './components/MetaToast';
 import { OverwatchEmblem } from './components/OverwatchEmblem';
+import { PWAInstallButton } from './components/PWAInstallButton';
 import { HERO_ROSTER } from './data/heroesAndMeta';
 import type {
   CounterMatchup,
@@ -454,6 +455,8 @@ export default function App() {
               <Settings2 className="h-3.5 w-3.5 text-sky-500" aria-hidden="true" />
               <span>อัปเดตแพตช์ / จัดการข้อมูล</span>
             </button>
+
+            <PWAInstallButton />
           </div>
         </header>
 

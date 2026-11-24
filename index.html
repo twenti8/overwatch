@@ -4,11 +4,146 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OVERWATCH — เช็กตัวแก้ทางแพตช์ล่าสุด (SEA Meta)</title>
+    <meta name="theme-color" content="#FFFFFF" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="OW2 Meta" />
     <link
       rel="icon"
       type="image/svg+xml"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Cpath d='M12.25 13.59A27 27 0 0 1 51.75 13.59L46.26 18.70A19.5 19.5 0 0 0 17.74 18.70Z' fill='%23F99E1A'/%3E%3Cpath d='M10.16 16.13A27 27 0 0 0 30.82 58.97L30.82 51.46A19.5 19.5 0 0 1 23.50 49.50L30.82 31.50L30.82 18.50L16.40 43.70A19.5 19.5 0 0 1 16.22 20.54Z' fill='%231E293B'/%3E%3Cpath d='M53.84 16.13A27 27 0 0 1 33.18 58.97L33.18 51.46A19.5 19.5 0 0 0 40.50 49.50L33.18 31.50L33.18 18.50L47.60 43.70A19.5 19.5 0 0 0 47.78 20.54Z' fill='%231E293B'/%3E%3C/svg%3E"
     />
+    <script>
+      (function () {
+        try {
+          var ORANGE_ARC =
+            'M 12.25 13.59 A 27 27 0 0 1 51.75 13.59 L 46.26 18.70 A 19.5 19.5 0 0 0 17.74 18.70 Z';
+          var LEFT_WING =
+            'M 10.16 16.13 A 27 27 0 0 0 30.82 58.97 L 30.82 51.46 A 19.5 19.5 0 0 1 23.50 49.50 L 30.82 31.50 L 30.82 18.50 L 16.40 43.70 A 19.5 19.5 0 0 1 16.22 20.54 Z';
+          var RIGHT_WING =
+            'M 53.84 16.13 A 27 27 0 0 1 33.18 58.97 L 33.18 51.46 A 19.5 19.5 0 0 0 40.50 49.50 L 33.18 31.50 L 33.18 18.50 L 47.60 43.70 A 19.5 19.5 0 0 0 47.78 20.54 Z';
+
+          function renderAppIconPng(size, roundedCorners) {
+            var canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            var ctx = canvas.getContext('2d');
+            if (!ctx) return '';
+
+            if (roundedCorners) {
+              var r = size * 0.22;
+              var inset = Math.max(1, size * 0.015);
+              var w = size - inset * 2;
+              ctx.beginPath();
+              ctx.moveTo(inset + r, inset);
+              ctx.lineTo(inset + w - r, inset);
+              ctx.quadraticCurveTo(inset + w, inset, inset + w, inset + r);
+              ctx.lineTo(inset + w, inset + w - r);
+              ctx.quadraticCurveTo(inset + w, inset + w, inset + w - r, inset + w);
+              ctx.lineTo(inset + r, inset + w);
+              ctx.quadraticCurveTo(inset, inset + w, inset, inset + w - r);
+              ctx.lineTo(inset, inset + r);
+              ctx.quadraticCurveTo(inset, inset, inset + r, inset);
+              ctx.closePath();
+              ctx.fillStyle = '#FFFFFF';
+              ctx.fill();
+              ctx.lineWidth = Math.max(1, size * 0.01);
+              ctx.strokeStyle = '#E2E8F0';
+              ctx.stroke();
+            } else {
+              // Solid full-bleed white for iOS apple-touch-icon & maskable safe zone
+              ctx.fillStyle = '#FFFFFF';
+              ctx.fillRect(0, 0, size, size);
+            }
+
+            // Center emblem inside ~74% safe zone
+            var emblemSize = size * 0.74;
+            var scale = emblemSize / 64;
+            var offset = (size - emblemSize) / 2;
+
+            ctx.save();
+            ctx.translate(offset, offset);
+            ctx.scale(scale, scale);
+
+            ctx.fillStyle = '#F99E1A';
+            ctx.fill(new Path2D(ORANGE_ARC));
+
+            ctx.fillStyle = '#1E293B';
+            ctx.fill(new Path2D(LEFT_WING));
+            ctx.fill(new Path2D(RIGHT_WING));
+
+            ctx.restore();
+            return canvas.toDataURL('image/png');
+          }
+
+          var png512 = renderAppIconPng(512, true);
+          var png512Full = renderAppIconPng(512, false);
+          var png192 = renderAppIconPng(192, true);
+          var png180Apple = renderAppIconPng(180, false);
+
+          if (png180Apple) {
+            var appleLink = document.createElement('link');
+            appleLink.rel = 'apple-touch-icon';
+            appleLink.sizes = '180x180';
+            appleLink.href = png180Apple;
+            document.head.appendChild(appleLink);
+          }
+
+          if (png192) {
+            var iconLink = document.createElement('link');
+            iconLink.rel = 'icon';
+            iconLink.type = 'image/png';
+            iconLink.sizes = '192x192';
+            iconLink.href = png192;
+            document.head.appendChild(iconLink);
+          }
+
+          if (png192 && png512 && typeof Blob !== 'undefined' && URL && URL.createObjectURL) {
+            var manifest = {
+              id: '/',
+              name: 'OW2 Meta',
+              short_name: 'OW2 Meta',
+              description: 'เช็กตัวแก้ทางแพตช์ล่าสุด Overwatch SEA Meta พร้อมระบบซิงค์อัตโนมัติ',
+              start_url: '/',
+              scope: '/',
+              display: 'standalone',
+              background_color: '#FFFFFF',
+              theme_color: '#FFFFFF',
+              icons: [
+                {
+                  src: png192,
+                  sizes: '192x192',
+                  type: 'image/png',
+                  purpose: 'any',
+                },
+                {
+                  src: png512,
+                  sizes: '512x512',
+                  type: 'image/png',
+                  purpose: 'any',
+                },
+                {
+                  src: png512Full || png512,
+                  sizes: '512x512',
+                  type: 'image/png',
+                  purpose: 'maskable',
+                },
+              ],
+            };
+            var blob = new Blob([JSON.stringify(manifest)], {
+              type: 'application/manifest+json',
+            });
+            var manifestLink = document.createElement('link');
+            manifestLink.rel = 'manifest';
+            manifestLink.href = URL.createObjectURL(blob);
+            document.head.appendChild(manifestLink);
+          }
+        } catch (err) {
+          // Ignore canvas/manifest failures in non-browser environments
+        }
+      })();
+    </script>
     <meta name="description" content="เช็กตัวแก้ทางแพตช์ล่าสุด Overwatch SEA Meta พร้อมระบบอัปเดตเมต้าอัตโนมัติและประวัติการปรับสมดุลฮีโร่" />
     <meta property="og:title" content="OVERWATCH — เช็กตัวแก้ทางแพตช์ล่าสุด (SEA Meta)" />
     <meta property="og:description" content="เช็กตัวแก้ทางแพตช์ล่าสุด Overwatch SEA Meta พร้อมระบบอัปเดตเมต้าอัตโนมัติและประวัติการปรับสมดุลฮีโร่" />
@@ -23,4 +158,3 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
